@@ -23,7 +23,7 @@ namespace Recipe.Sonar.Controllers
         [Authorize]
         public IActionResult Get()
         {
-            return Ok(new User { Id = 1, Name = User.Identity.Name});
+            return Ok(new User { Id = 1, Name = User.Identity.Name });
         }
         
         [Authorize("read:messages")]
