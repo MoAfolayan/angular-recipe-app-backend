@@ -49,16 +49,21 @@ namespace Recipe.Sonar
             );
 
             var domain = Configuration["Auth0:Domain"];
+            var audience = Configuration["Auth0:Audience"];
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer
                 (
                     options =>
                     {
                         options.Authority = domain;
-                        options.Audience = Configuration["Auth0:Audience"];
+                        options.Audience = audience;
                         // If the access token does not have a `sub` claim, `User.Identity.Name` will be `null`. Map it to a different claim by setting the NameClaimType below.
                         options.TokenValidationParameters = new TokenValidationParameters
                         {
+                            ValidateIssuer = true,
+                            ValidIssuer = domain,
+                            ValidateAudience = true,
+                            ValidAudience = audience,
                             NameClaimType = ClaimTypes.NameIdentifier
                         };
                     }
