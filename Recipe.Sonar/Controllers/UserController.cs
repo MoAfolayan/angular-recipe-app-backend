@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
 using Recipe.Data.Entities;
+using Recipe.Logic.Services;
 
 namespace Recipe.Sonar.Controllers
 {
@@ -14,23 +15,28 @@ namespace Recipe.Sonar.Controllers
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
-        public UserController(ILogger<UserController> logger)
+        private readonly IUserService _userService;
+
+        public UserController(ILogger<UserController> logger,
+            IUserService userService)
         {
             _logger = logger;
+            _userService = userService;
         }
 
         [HttpGet("{id}")]
         [Authorize]
-        public IActionResult Get()
+        public IActionResult Get(int id)
         {
-            return Ok(new User { Id = 1, Name = User.Identity.Name });
+            var result = _userService.GetUser(id);
+            return Ok(result);
         }
         
         [Authorize("read:messages")]
         [HttpGet("test")]
         public IActionResult Test()
         {
-            return Ok(new User { Id = 1, Name = "Mo"});
+            return Ok(new User { Id = 1, FirstName = "Mo"});
         }
 
         [HttpGet("claims")]

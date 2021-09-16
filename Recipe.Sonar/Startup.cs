@@ -14,7 +14,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 using Recipe.Sonar.Auth;
+using Recipe.Logic.Services;
+using Recipe.Data;
+using Recipe.Data.Repositories;
 
 namespace Recipe.Sonar
 {
@@ -77,6 +81,13 @@ namespace Recipe.Sonar
             services.AddControllers();
 
             services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
+
+            // Services
+            services.AddTransient<IUserService, UserService>();
+            
+            // Repositories
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IUserRepository, UserRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
