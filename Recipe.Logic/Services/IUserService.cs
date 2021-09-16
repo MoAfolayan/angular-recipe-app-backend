@@ -5,6 +5,6 @@ namespace Recipe.Logic.Services
 {
     public interface IUserService
     {
-        User GetUser(int id);
+        User GetUserByAuth0Id(string id);
     }
 }

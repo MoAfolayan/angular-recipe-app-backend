@@ -24,16 +24,16 @@ namespace Recipe.Sonar.Controllers
             _userService = userService;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         [Authorize]
-        public IActionResult Get(int id)
+        public IActionResult Get()
         {
-            var result = _userService.GetUser(id);
-            return Ok(result);
+            var user = _userService.GetUserByAuth0Id(User.Identity.Name);
+            return Ok(user);
         }
         
-        [Authorize("read:messages")]
         [HttpGet("test")]
+        [Authorize("read:messages")]
         public IActionResult Test()
         {
             return Ok(new User { Id = 1, FirstName = "Mo"});

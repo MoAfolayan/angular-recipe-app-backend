@@ -28,6 +28,19 @@ namespace Recipe.Data.Repositories
             return result;
         }
 
+        public User GetUserByAuth0Id(string auth0Id)
+        {
+            User result = null;
+            var sql = "SELECT * FROM Users WHERE Auth0Id = @Auth0Id";
+            using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Open();
+                result = connection.QuerySingleOrDefault<User>(sql, new { Auth0Id = auth0Id } );
+            }
+            
+            return result;
+        }
+
         public User Insert(User entity)
         {
             return new User();

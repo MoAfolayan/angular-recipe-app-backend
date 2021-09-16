@@ -14,9 +14,9 @@ namespace Recipe.Logic.Services
             _unitOfWork = unitOfWork;
         }
 
-        public User GetUser(int id)
+        public User GetUserByAuth0Id(string auth0Id)
         {
-            return _unitOfWork.Users.GetById(id);
+            return _unitOfWork.Users.GetUserByAuth0Id(auth0Id);
         }
     }
 }
