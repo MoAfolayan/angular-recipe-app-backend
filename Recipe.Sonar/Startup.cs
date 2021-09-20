@@ -74,10 +74,10 @@ namespace Recipe.Sonar
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("create:all", policy => policy.Requirements.Add(new HasScopeRequirement("create:all", domain)));
-                options.AddPolicy("read:all", policy => policy.Requirements.Add(new HasScopeRequirement("read:all", domain)));
-                options.AddPolicy("update:all", policy => policy.Requirements.Add(new HasScopeRequirement("update:all", domain)));
-                options.AddPolicy("delete:all", policy => policy.Requirements.Add(new HasScopeRequirement("delete:all", domain)));
+                options.AddPolicy("create:users", policy => policy.Requirements.Add(new HasScopeRequirement("create:users", domain)));
+                options.AddPolicy("read:users", policy => policy.Requirements.Add(new HasScopeRequirement("read:users", domain)));
+                options.AddPolicy("update:users", policy => policy.Requirements.Add(new HasScopeRequirement("update:users", domain)));
+                options.AddPolicy("delete:users", policy => policy.Requirements.Add(new HasScopeRequirement("delete:users", domain)));
             });
 
             services.AddControllers();

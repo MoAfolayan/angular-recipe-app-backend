@@ -6,5 +6,8 @@ namespace Recipe.Logic.Services
     public interface IUserService
     {
         User GetUserByAuth0Id(string id);
+        void AddUser(User user);
+        void UpdateUser(User user);
+        void DeleteUser(User user);
     }
 }

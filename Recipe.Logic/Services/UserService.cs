@@ -18,5 +18,22 @@ namespace Recipe.Logic.Services
         {
             return _unitOfWork.Users.GetUserByAuth0Id(auth0Id);
         }
+
+        public void AddUser(User user)
+        {
+            user.CreatedDate = DateTime.UtcNow;
+            user.IsActive = true;
+            _unitOfWork.Users.Add(user);
+        }
+
+        public void UpdateUser(User user)
+        {
+            _unitOfWork.Users.Update(user);
+        }
+
+        public void DeleteUser(User user)
+        {
+            _unitOfWork.Users.Delete(user);
+        }
     }
 }

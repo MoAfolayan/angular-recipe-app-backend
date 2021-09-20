@@ -25,7 +25,7 @@ namespace Recipe.Sonar.Controllers
         }
 
         [HttpGet]
-        [Authorize("read:all")]
+        [Authorize("read:users")]
         public IActionResult Get()
         {
             var user = _userService.GetUserByAuth0Id(User.Identity.Name);
@@ -33,27 +33,27 @@ namespace Recipe.Sonar.Controllers
         }
 
         [HttpPost]
-        [Authorize("create:all")]
-        public IActionResult Add()
+        [Authorize("create:users")]
+        public IActionResult Add([FromBody] User user)
         {
-            var user = _userService.GetUserByAuth0Id(User.Identity.Name);
-            return Ok(user);
+            _userService.AddUser(user);
+            return Ok();
         }
 
         [HttpPut]
-        [Authorize("update:all")]
-        public IActionResult Update()
+        [Authorize("update:users")]
+        public IActionResult Update([FromBody] User user)
         {
-            var user = _userService.GetUserByAuth0Id(User.Identity.Name);
-            return Ok(user);
+            _userService.UpdateUser(user);
+            return Ok();
         }
 
         [HttpDelete]
-        [Authorize("delete:all")]
-        public IActionResult Delete()
+        [Authorize("delete:users")]
+        public IActionResult Delete([FromBody] User user)
         {
-            var user = _userService.GetUserByAuth0Id(User.Identity.Name);
-            return Ok(user);
+            _userService.DeleteUser(user);
+            return Ok();
         }
 
         [HttpGet("claims")]
