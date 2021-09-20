@@ -25,18 +25,35 @@ namespace Recipe.Sonar.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize("read:all")]
         public IActionResult Get()
         {
             var user = _userService.GetUserByAuth0Id(User.Identity.Name);
             return Ok(user);
         }
-        
-        [HttpGet("test")]
-        [Authorize("read:messages")]
-        public IActionResult Test()
+
+        [HttpPost]
+        [Authorize("create:all")]
+        public IActionResult Add()
         {
-            return Ok(new User { Id = 1, FirstName = "Mo"});
+            var user = _userService.GetUserByAuth0Id(User.Identity.Name);
+            return Ok(user);
+        }
+
+        [HttpPut]
+        [Authorize("update:all")]
+        public IActionResult Update()
+        {
+            var user = _userService.GetUserByAuth0Id(User.Identity.Name);
+            return Ok(user);
+        }
+
+        [HttpDelete]
+        [Authorize("delete:all")]
+        public IActionResult Delete()
+        {
+            var user = _userService.GetUserByAuth0Id(User.Identity.Name);
+            return Ok(user);
         }
 
         [HttpGet("claims")]
