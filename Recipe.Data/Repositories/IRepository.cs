@@ -8,8 +8,8 @@ namespace Recipe.Data.Repositories
     public interface IRepository<TEntity> where TEntity: class
     {
         TEntity GetById(int id);
-        TEntity Insert(TEntity entity);
-        TEntity Update(TEntity entity);
-        bool Delete(TEntity entity);
+        void Add(TEntity entity);
+        void Update(TEntity entity);
+        void Delete(TEntity entity);
     }
 }
