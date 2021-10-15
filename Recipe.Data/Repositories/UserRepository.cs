@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using Dapper;
 
+using Recipe.Data.Repositories.Interfaces;
+
 namespace Recipe.Data.Repositories
 {
     public class UserRepository : Repository<User>, IUserRepository

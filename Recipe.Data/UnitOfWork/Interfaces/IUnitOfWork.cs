@@ -1,6 +1,7 @@
 using Recipe.Data.Repositories;
+using Recipe.Data.Repositories.Interfaces;
 
-namespace Recipe.Data
+namespace Recipe.Data.UnitOfWork.Interfaces
 {
     public interface IUnitOfWork
     {

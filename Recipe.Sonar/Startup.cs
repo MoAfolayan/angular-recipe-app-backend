@@ -19,6 +19,11 @@ using Recipe.Sonar.Auth;
 using Recipe.Logic.Services;
 using Recipe.Data;
 using Recipe.Data.Repositories;
+using Recipe.Data.Repositories.Interfaces;
+using Recipe.Logic.Services.Interfaces;
+using Recipe.Data.Entities;
+using Recipe.Data.UnitOfWork.Interfaces;
+using Recipe.Data.UnitOfWork;
 
 namespace Recipe.Sonar
 {
@@ -103,7 +108,7 @@ namespace Recipe.Sonar
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseRouting();
             app.UseCors("AllowSpecificOrigin");
             app.UseAuthentication();

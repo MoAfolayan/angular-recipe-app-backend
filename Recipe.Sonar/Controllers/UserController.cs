@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
 using Recipe.Data.Entities;
-using Recipe.Logic.Services;
+using Recipe.Logic.Services.Interfaces;
 
 namespace Recipe.Sonar.Controllers
 {

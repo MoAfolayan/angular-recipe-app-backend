@@ -2,6 +2,8 @@
 using Recipe.Data.Repositories;
 using Recipe.Data;
 using Recipe.Data.Entities;
+using Recipe.Logic.Services.Interfaces;
+using Recipe.Data.UnitOfWork.Interfaces;
 
 namespace Recipe.Logic.Services
 {
