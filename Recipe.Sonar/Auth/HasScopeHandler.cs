@@ -14,11 +14,13 @@ namespace Recipe.Sonar.Auth
                 return Task.CompletedTask;
             }
 
+            var permissions = context.User.Claims.Where(x => x.Type == "permissions").ToList();
+
             // Split the scopes string into an array
             var scopes = context.User.FindFirst(c => c.Type == "scope" && c.Issuer == requirement.Issuer).Value.Split(' ');
 
             // Succeed if the scope array contains the required scope
-            if (scopes.Any(s => s == requirement.Scope))
+            if (permissions.Any(s => s.Value == requirement.Scope))
             {
                 context.Succeed(requirement);
             }
