@@ -16,24 +16,29 @@ namespace Recipe.Logic.Services
             _unitOfWork = unitOfWork;
         }
 
+        public User GetById(int id) 
+        {
+            return _unitOfWork.Users.GetById(id);
+        }
+
         public User GetUserByAuth0Id(string auth0Id)
         {
             return _unitOfWork.Users.GetUserByAuth0Id(auth0Id);
         }
 
-        public void AddUser(User user)
+        public void Add(User user)
         {
             user.CreatedDate = DateTime.UtcNow;
             user.IsActive = true;
-            _unitOfWork.Users.Add(user);
+            _unitOfWork.Users.Insert(user);
         }
 
-        public void UpdateUser(User user)
+        public void Update(User user)
         {
             _unitOfWork.Users.Update(user);
         }
 
-        public void DeleteUser(User user)
+        public void Delete(User user)
         {
             _unitOfWork.Users.Delete(user);
         }

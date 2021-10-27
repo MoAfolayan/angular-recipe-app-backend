@@ -20,7 +20,7 @@ namespace Recipe.Data.Repositories
             _configuration = configuration;
         }
 
-        public TEntity Get(int id)
+        public TEntity GetById(int id)
         {
             TEntity result = null;
             using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
@@ -31,11 +31,19 @@ namespace Recipe.Data.Repositories
             return result;
         }
 
-        public void Add(TEntity entity)
+        public void Insert(TEntity entity)
         {
             using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Insert(entity);
+            }
+        }
+
+        public void InsertMultiple(IEnumerable<TEntity> entities)
+        {
+            using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Insert(entities);
             }
         }
 
@@ -44,6 +52,14 @@ namespace Recipe.Data.Repositories
             using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Update(entity);
+            }
+        }
+
+        public void UpdateMultiple(IEnumerable<TEntity> entities)
+        {
+            using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Update(entities);
             }
         }
 
@@ -56,6 +72,18 @@ namespace Recipe.Data.Repositories
             using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Execute(sql, entity);
+            }
+        }
+
+        public void DeleteMultiple(IEnumerable<TEntity> entities)
+        {
+            var sql = $@"UPDATE {_tableName} 
+                        SET IsActive = 0 
+                        WHERE Id = @id";
+
+            using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Execute(sql, entities);
             }
         }
     }

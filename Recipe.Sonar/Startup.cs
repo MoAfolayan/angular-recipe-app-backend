@@ -83,6 +83,11 @@ namespace Recipe.Sonar
                 options.AddPolicy("read:users", policy => policy.Requirements.Add(new HasScopeRequirement("read:users", domain)));
                 options.AddPolicy("update:users", policy => policy.Requirements.Add(new HasScopeRequirement("update:users", domain)));
                 options.AddPolicy("delete:users", policy => policy.Requirements.Add(new HasScopeRequirement("delete:users", domain)));
+
+                options.AddPolicy("create:non-user-entities", policy => policy.Requirements.Add(new HasScopeRequirement("create:non-user-entities", domain)));
+                options.AddPolicy("read:non-user-entities", policy => policy.Requirements.Add(new HasScopeRequirement("read:non-user-entities", domain)));
+                options.AddPolicy("update:non-user-entities", policy => policy.Requirements.Add(new HasScopeRequirement("update:non-user-entities", domain)));
+                options.AddPolicy("delete:non-user-entities", policy => policy.Requirements.Add(new HasScopeRequirement("delete:non-user-entities", domain)));
             });
 
             services.AddControllers();
@@ -91,10 +96,18 @@ namespace Recipe.Sonar
 
             // Services
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRecipeService, RecipeService>();
+            services.AddTransient<IIngredientService, IngredientService>();
+            services.AddTransient<ICheckListService, CheckListService>();
+            services.AddTransient<ICheckListItemService, CheckListItemService>();
             
             // Repositories
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRecipeRepository, RecipeRepository>();
+            services.AddTransient<IIngredientRepository, IngredientRepository>();
+            services.AddTransient<ICheckListRepository, CheckListRepository>();
+            services.AddTransient<ICheckListItemRepository, CheckListItemRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

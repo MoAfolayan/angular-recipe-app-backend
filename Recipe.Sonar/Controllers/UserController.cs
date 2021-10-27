@@ -36,7 +36,7 @@ namespace Recipe.Sonar.Controllers
         [Authorize("create:users")]
         public IActionResult Add([FromBody] User user)
         {
-            _userService.AddUser(user);
+            _userService.Add(user);
             return Ok();
         }
 
@@ -44,7 +44,7 @@ namespace Recipe.Sonar.Controllers
         [Authorize("update:users")]
         public IActionResult Update([FromBody] User user)
         {
-            _userService.UpdateUser(user);
+            _userService.Update(user);
             return Ok();
         }
 
@@ -52,7 +52,7 @@ namespace Recipe.Sonar.Controllers
         [Authorize("delete:users")]
         public IActionResult Delete([FromBody] User user)
         {
-            _userService.DeleteUser(user);
+            _userService.Delete(user);
             return Ok();
         }
 
