@@ -1,5 +1,6 @@
 using System;
 using Recipe.Data.Repositories;
+using System.Collections.Generic;
 using Recipe.Data;
 using rec = Recipe.Data.Entities;
 using Recipe.Logic.Services.Interfaces;
@@ -36,6 +37,11 @@ namespace Recipe.Logic.Services
         public void Delete(rec.Recipe recipe)
         {
             _unitOfWork.Recipes.Delete(recipe);
+        }
+
+        public IEnumerable<rec.Recipe> GetAllUserRecipesByUserId(int userId)
+        {
+            return _unitOfWork.Recipes.GetAllUserRecipesByUserId(userId);
         }
     }
 }

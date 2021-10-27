@@ -55,5 +55,13 @@ namespace Recipe.Sonar.Controllers
             _recipeService.Delete(recipe);
             return Ok();
         }
+
+        [HttpGet("user/{userId}")] 
+        [Authorize("read:non-user-entities")]
+        public IActionResult GetAllUserRecipesByUserId(int userId)
+        {
+            var recipes = _recipeService.GetAllUserRecipesByUserId(userId);
+            return Ok(recipes);
+        }
     }
 }
