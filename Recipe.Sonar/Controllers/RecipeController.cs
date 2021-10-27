@@ -28,40 +28,80 @@ namespace Recipe.Sonar.Controllers
         [Authorize("read:non-user-entities")]
         public IActionResult Get(int id)
         {
-            var recipe = _recipeService.GetById(id);
-            return Ok(recipe);
+            try
+            {
+                var recipe = _recipeService.GetById(id);
+                return Ok(recipe);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPost]
         [Authorize("create:non-user-entities")]
         public IActionResult Add([FromBody] rec.Recipe recipe)
         {
-            _recipeService.Add(recipe);
-            return Ok();
+            try
+            {
+                _recipeService.Add(recipe);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPut]
         [Authorize("update:non-user-entities")]
         public IActionResult Update([FromBody] rec.Recipe recipe)
         {
-            _recipeService.Update(recipe);
-            return Ok();
+            try
+            {
+                _recipeService.Update(recipe);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpDelete]
         [Authorize("delete:non-user-entities")]
         public IActionResult Delete([FromBody] rec.Recipe recipe)
         {
-            _recipeService.Delete(recipe);
-            return Ok();
+            try
+            {
+                _recipeService.Delete(recipe);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
-        [HttpGet("user/{userId}")] 
+        [HttpGet("user/{userId}")]
         [Authorize("read:non-user-entities")]
         public IActionResult GetAllUserRecipesByUserId(int userId)
         {
-            var recipes = _recipeService.GetAllUserRecipesByUserId(userId);
-            return Ok(recipes);
+            try
+            {
+                var recipes = _recipeService.GetAllUserRecipesByUserId(userId);
+                return Ok(recipes);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

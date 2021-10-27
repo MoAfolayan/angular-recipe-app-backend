@@ -28,39 +28,79 @@ namespace Recipe.Sonar.Controllers
         [Authorize("read:users")]
         public IActionResult Get()
         {
-            var user = _userService.GetUserByAuth0Id(User.Identity.Name);
-            return Ok(user);
+            try
+            {
+                var user = _userService.GetUserByAuth0Id(User.Identity.Name);
+                return Ok(user);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPost]
         [Authorize("create:users")]
         public IActionResult Add([FromBody] User user)
         {
-            _userService.Add(user);
-            return Ok();
+            try
+            {
+                _userService.Add(user);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPut]
         [Authorize("update:users")]
         public IActionResult Update([FromBody] User user)
         {
-            _userService.Update(user);
-            return Ok();
+            try
+            {
+                _userService.Update(user);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpDelete]
         [Authorize("delete:users")]
         public IActionResult Delete([FromBody] User user)
         {
-            _userService.Delete(user);
-            return Ok();
+            try
+            {
+                _userService.Delete(user);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpGet("claims")]
         [Authorize]
         public IActionResult Claims()
         {
-            return Ok(User.Claims.Select(c => new { c.Type, c.Value }));
+            try
+            {
+                return Ok(User.Claims.Select(c => new { c.Type, c.Value }));
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

@@ -28,39 +28,64 @@ namespace Recipe.Sonar.Controllers
         [Authorize("read:non-user-entities")]
         public IActionResult Get(int id)
         {
-            var checkListItem = _checkListItemService.GetById(id);
-            return Ok(checkListItem);
+            try
+            {
+                var checkListItem = _checkListItemService.GetById(id);
+                return Ok(checkListItem);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPost]
         [Authorize("create:non-user-entities")]
         public IActionResult Add([FromBody] CheckListItem checkListItem)
         {
-            _checkListItemService.Add(checkListItem);
-            return Ok();
+            try
+            {
+                _checkListItemService.Add(checkListItem);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPut]
         [Authorize("update:non-user-entities")]
         public IActionResult Update([FromBody] CheckListItem checkListItem)
         {
-            _checkListItemService.Update(checkListItem);
-            return Ok();
+            try
+            {
+                _checkListItemService.Update(checkListItem);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpDelete]
         [Authorize("delete:non-user-entities")]
         public IActionResult Delete([FromBody] CheckListItem checkListItem)
         {
-            _checkListItemService.Delete(checkListItem);
-            return Ok();
-        }
-
-        [HttpGet("claims")]
-        [Authorize]
-        public IActionResult Claims()
-        {
-            return Ok(User.Claims.Select(c => new { c.Type, c.Value }));
+            try
+            {
+                _checkListItemService.Delete(checkListItem);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

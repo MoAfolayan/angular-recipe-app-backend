@@ -28,39 +28,64 @@ namespace Recipe.Sonar.Controllers
         [Authorize("read:non-user-entities")]
         public IActionResult Get(int id)
         {
-            var ingredient = _ingredientService.GetById(id);
-            return Ok(ingredient);
+            try
+            {
+                var ingredient = _ingredientService.GetById(id);
+                return Ok(ingredient);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPost]
         [Authorize("create:non-user-entities")]
         public IActionResult Add([FromBody] Ingredient ingredient)
         {
-            _ingredientService.Add(ingredient);
-            return Ok();
+            try
+            {
+                _ingredientService.Add(ingredient);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPut]
         [Authorize("update:non-user-entities")]
         public IActionResult Update([FromBody] Ingredient ingredient)
         {
-            _ingredientService.Update(ingredient);
-            return Ok();
+            try
+            {
+                _ingredientService.Update(ingredient);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpDelete]
         [Authorize("delete:non-user-entities")]
         public IActionResult Delete([FromBody] Ingredient ingredient)
         {
-            _ingredientService.Delete(ingredient);
-            return Ok();
-        }
-
-        [HttpGet("claims")]
-        [Authorize]
-        public IActionResult Claims()
-        {
-            return Ok(User.Claims.Select(c => new { c.Type, c.Value }));
+            try
+            {
+                _ingredientService.Delete(ingredient);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

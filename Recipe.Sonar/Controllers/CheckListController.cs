@@ -28,39 +28,64 @@ namespace Recipe.Sonar.Controllers
         [Authorize("read:non-user-entities")]
         public IActionResult Get(int id)
         {
-            var user = _checkListService.GetById(id);
-            return Ok(user);
+            try
+            {
+                var user = _checkListService.GetById(id);
+                return Ok(user);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPost]
         [Authorize("create:non-user-entities")]
         public IActionResult Add([FromBody] CheckList checkList)
         {
-            _checkListService.Add(checkList);
-            return Ok();
+            try
+            {
+                _checkListService.Add(checkList);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPut]
         [Authorize("update:non-user-entities")]
         public IActionResult Update([FromBody] CheckList checkList)
         {
-            _checkListService.Update(checkList);
-            return Ok();
+            try
+            {
+                _checkListService.Update(checkList);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpDelete]
         [Authorize("delete:non-user-entities")]
         public IActionResult Delete([FromBody] CheckList checkList)
         {
-            _checkListService.Delete(checkList);
-            return Ok();
-        }
-
-        [HttpGet("claims")]
-        [Authorize]
-        public IActionResult Claims()
-        {
-            return Ok(User.Claims.Select(c => new { c.Type, c.Value }));
+            try
+            {
+                _checkListService.Delete(checkList);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }
