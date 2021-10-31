@@ -12,12 +12,12 @@ namespace Recipe.Sonar.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class RecipeController : ControllerBase
+    public class RecipesController : ControllerBase
     {
-        private readonly ILogger<RecipeController> _logger;
+        private readonly ILogger<RecipesController> _logger;
         private readonly IRecipeService _recipeService;
 
-        public RecipeController(ILogger<RecipeController> logger,
+        public RecipesController(ILogger<RecipesController> logger,
             IRecipeService recipeService)
         {
             _logger = logger;
@@ -88,7 +88,7 @@ namespace Recipe.Sonar.Controllers
             }
         }
 
-        [HttpGet("user/{userId}")]
+        [HttpGet("userid/{userId}")]
         [Authorize("read:non-user-entities")]
         public IActionResult GetAllUserRecipesByUserId(int userId)
         {
