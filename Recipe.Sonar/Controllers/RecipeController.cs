@@ -74,11 +74,11 @@ namespace Recipe.Sonar.Controllers
 
       [HttpPost("delete")]
       [Authorize("delete:non-user-entities")]
-      public IActionResult Delete([FromBody] rec.Recipe recipe)
+      public IActionResult Delete([FromBody] IEnumerable<rec.Recipe> recipes)
       {
          try
          {
-            _recipeService.Delete(recipe);
+            _recipeService.DeleteMultiple(recipes);
             return Ok();
          }
          catch (System.Exception ex)
