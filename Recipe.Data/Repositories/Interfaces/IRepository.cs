@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Recipe.Data.Repositories.Interfaces
 {
-    public interface IRepository<TEntity> where TEntity: class
+    public interface IRepository<TEntity> where TEntity : class
     {
         TEntity GetById(int id);
         void Insert(TEntity entity);

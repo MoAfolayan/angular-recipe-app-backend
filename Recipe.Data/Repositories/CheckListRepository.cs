@@ -8,12 +8,12 @@ using Recipe.Data.Repositories.Interfaces;
 
 namespace Recipe.Data.Repositories
 {
-   public class CheckListRepository : Repository<CheckList>, ICheckListRepository
-   {
-      public CheckListRepository(IConfiguration configuration)
-          : base(configuration)
-      {
-         _tableName = "CheckLists";
-      }
-   }
+    public class CheckListRepository : Repository<CheckList>, ICheckListRepository
+    {
+        public CheckListRepository(IConfiguration configuration)
+            : base(configuration)
+        {
+            _tableName = "CheckLists";
+        }
+    }
 }

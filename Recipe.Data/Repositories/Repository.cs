@@ -10,7 +10,7 @@ using Dapper.Contrib.Extensions;
 
 namespace Recipe.Data.Repositories
 {
-    public abstract class Repository<TEntity> where TEntity: class
+    public abstract class Repository<TEntity> where TEntity : class
     {
         protected readonly IConfiguration _configuration;
         protected string _tableName;
@@ -27,7 +27,7 @@ namespace Recipe.Data.Repositories
             {
                 result = connection.Get<TEntity>(id);
             }
-            
+
             return result;
         }
 

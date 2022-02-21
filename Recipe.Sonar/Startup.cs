@@ -100,7 +100,7 @@ namespace Recipe.Sonar
             services.AddTransient<IIngredientService, IngredientService>();
             services.AddTransient<ICheckListService, CheckListService>();
             services.AddTransient<ICheckListItemService, CheckListItemService>();
-            
+
             // Repositories
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IUserRepository, UserRepository>();

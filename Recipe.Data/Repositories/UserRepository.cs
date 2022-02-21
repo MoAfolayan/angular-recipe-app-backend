@@ -10,7 +10,7 @@ namespace Recipe.Data.Repositories
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
-        public UserRepository(IConfiguration configuration) 
+        public UserRepository(IConfiguration configuration)
             : base(configuration)
         {
             _tableName = "Users";
@@ -23,12 +23,12 @@ namespace Recipe.Data.Repositories
                         FROM Users 
                         WHERE Auth0Id = @Auth0Id
                             AND IsActive = 1";
-                            
+
             using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
-                result = connection.QuerySingleOrDefault<User>(sql, new { Auth0Id = auth0Id } );
+                result = connection.QuerySingleOrDefault<User>(sql, new { Auth0Id = auth0Id });
             }
-            
+
             return result;
         }
     }
