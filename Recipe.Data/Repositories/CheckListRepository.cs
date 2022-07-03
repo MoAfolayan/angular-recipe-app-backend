@@ -13,7 +13,7 @@ namespace Recipe.Data.Repositories
         public CheckListRepository(IConfiguration configuration)
             : base(configuration)
         {
-            _tableName = "CheckLists";
+            _tableName = "CheckList";
         }
     }
 }

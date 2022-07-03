@@ -16,15 +16,15 @@ namespace Recipe.Data.Repositories
         public RecipeRepository(IConfiguration configuration)
             : base(configuration)
         {
-            _tableName = "Recipes";
+            _tableName = "Recipe";
         }
 
         public IEnumerable<rec.Recipe> GetAllUserRecipesByUserId(int userId)
         {
             IEnumerable<rec.Recipe> result = null;
             var sql = @"SELECT r.*, i.Id as IngredientID, i.*
-                        FROM Recipes r
-                        LEFT JOIN Ingredients i
+                        FROM Recipe r
+                        LEFT JOIN Ingredient i
                             ON r.Id = i.RecipeId
                         WHERE r.UserId = @UserId
                             AND r.IsActive = 1

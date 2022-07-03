@@ -13,7 +13,7 @@ namespace Recipe.Data.Repositories
         public IngredientRepository(IConfiguration configuration)
             : base(configuration)
         {
-            _tableName = "Ingredients";
+            _tableName = "Ingredient";
         }
     }
 }
