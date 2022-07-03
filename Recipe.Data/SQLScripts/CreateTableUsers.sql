@@ -1,4 +1,5 @@
-create table Users (
+create table [dbo].[User]
+(
     Id int NOT NULL PRIMARY KEY IDENTITY(1,1),
     Auth0Id nvarchar(255) NOT NULL,
     Email nvarchar(255) NULL,

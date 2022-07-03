@@ -13,14 +13,14 @@ namespace Recipe.Data.Repositories
         public UserRepository(IConfiguration configuration)
             : base(configuration)
         {
-            _tableName = "Users";
+            _tableName = "User";
         }
 
         public User GetUserByAuth0Id(string auth0Id)
         {
             User result = null;
             var sql = @"SELECT * 
-                        FROM Users 
+                        FROM [dbo].[User] 
                         WHERE Auth0Id = @Auth0Id
                             AND IsActive = 1";
 

@@ -6,6 +6,6 @@ insert into dbo.CheckListItem
     )
 values
     (
-        4,
-        3
+        1,
+        1
 )
