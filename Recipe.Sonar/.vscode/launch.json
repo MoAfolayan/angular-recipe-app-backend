@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/netcoreapp3.1/Recipe.Sonar.dll",
+            "program": "${workspaceFolder}/bin/Debug/net6.0/Recipe.Sonar.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,

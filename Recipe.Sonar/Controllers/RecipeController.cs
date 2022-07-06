@@ -74,11 +74,27 @@ namespace Recipe.Sonar.Controllers
 
         [HttpPost("delete-multiple")]
         [Authorize("delete:non-user-entities")]
-        public IActionResult Delete([FromBody] IEnumerable<rec.Recipe> recipes)
+        public IActionResult DeleteMultiple([FromBody] IEnumerable<rec.Recipe> recipes)
         {
             try
             {
                 _recipeService.DeleteMultiple(recipes);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost("delete")]
+        [Authorize("delete:non-user-entities")]
+        public IActionResult Delete([FromBody] rec.Recipe recipe)
+        {
+            try
+            {
+                _recipeService.Delete(recipe);
                 return Ok();
             }
             catch (System.Exception ex)
