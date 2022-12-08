@@ -1,4 +1,4 @@
-# recipe-app-backend
+# Recipe App Back-end
 
 Back-end for Recipe App
 - Design
