@@ -1,10 +1,7 @@
 using System;
-using Recipe.Data.Repositories;
 using System.Collections.Generic;
-using Recipe.Data;
 using rec = Recipe.Data.Entities;
-using Recipe.Logic.Services.Interfaces;
-using Recipe.Data.UnitOfWork.Interfaces;
+using Recipe.Data.UnitOfWork;
 
 namespace Recipe.Logic.Services
 {
@@ -48,5 +45,10 @@ namespace Recipe.Logic.Services
         {
             return _unitOfWork.Recipes.GetAllUserRecipesByUserId(userId);
         }
+    }
+
+    public interface IRecipeService : IService<rec.Recipe>
+    {
+        IEnumerable<rec.Recipe> GetAllUserRecipesByUserId(int userId);
     }
 }

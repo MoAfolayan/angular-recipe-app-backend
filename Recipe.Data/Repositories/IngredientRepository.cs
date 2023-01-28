@@ -1,10 +1,5 @@
-using System;
 using Recipe.Data.Entities;
 using Microsoft.Extensions.Configuration;
-using System.Data.SqlClient;
-using Dapper;
-
-using Recipe.Data.Repositories.Interfaces;
 
 namespace Recipe.Data.Repositories
 {
@@ -15,5 +10,9 @@ namespace Recipe.Data.Repositories
         {
             _tableName = "Ingredient";
         }
+    }
+
+    public interface IIngredientRepository : IRepository<Ingredient>
+    {
     }
 }

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Recipe.Data.Repositories;
-using Recipe.Data;
 using Recipe.Data.Entities;
-using Recipe.Logic.Services.Interfaces;
-using Recipe.Data.UnitOfWork.Interfaces;
+using Recipe.Data.UnitOfWork;
 
 namespace Recipe.Logic.Services
 {
@@ -48,5 +45,10 @@ namespace Recipe.Logic.Services
         {
             _unitOfWork.Users.DeleteMultiple(users);
         }
+    }
+
+    public interface IUserService : IService<User>
+    {
+        User GetUserByAuth0Id(string id);
     }
 }

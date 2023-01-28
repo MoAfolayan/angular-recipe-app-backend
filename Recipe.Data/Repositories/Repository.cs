@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Recipe.Data.Entities;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using Dapper;
@@ -86,5 +83,16 @@ namespace Recipe.Data.Repositories
                 connection.Execute(sql, entities);
             }
         }
+    }
+
+    public interface IRepository<TEntity> where TEntity : class
+    {
+        TEntity GetById(int id);
+        void Insert(TEntity entity);
+        void InsertMultiple(IEnumerable<TEntity> entities);
+        void Update(TEntity entity);
+        void UpdateMultiple(IEnumerable<TEntity> entities);
+        void Delete(TEntity entity);
+        void DeleteMultiple(IEnumerable<TEntity> entities);
     }
 }

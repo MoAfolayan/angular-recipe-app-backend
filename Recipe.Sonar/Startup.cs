@@ -1,28 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 using Recipe.Sonar.Auth;
 using Recipe.Logic.Services;
-using Recipe.Data;
 using Recipe.Data.Repositories;
-using Recipe.Data.Repositories.Interfaces;
-using Recipe.Logic.Services.Interfaces;
-using Recipe.Data.Entities;
-using Recipe.Data.UnitOfWork.Interfaces;
 using Recipe.Data.UnitOfWork;
 
 namespace Recipe.Sonar

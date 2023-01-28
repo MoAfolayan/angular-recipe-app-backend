@@ -1,13 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using rec = Recipe.Data.Entities;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using Dapper;
-
-using Recipe.Data.Repositories.Interfaces;
 
 namespace Recipe.Data.Repositories
 {
@@ -64,5 +60,10 @@ namespace Recipe.Data.Repositories
 
             return result;
         }
+    }
+
+    public interface IRecipeRepository : IRepository<rec.Recipe>
+    {
+        IEnumerable<rec.Recipe> GetAllUserRecipesByUserId(int userId);
     }
 }

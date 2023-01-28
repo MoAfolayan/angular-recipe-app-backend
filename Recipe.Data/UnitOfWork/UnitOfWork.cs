@@ -1,8 +1,4 @@
-using System;
-using Recipe.Data.Entities;
 using Recipe.Data.Repositories;
-using Recipe.Data.Repositories.Interfaces;
-using Recipe.Data.UnitOfWork.Interfaces;
 
 namespace Recipe.Data.UnitOfWork
 {
@@ -27,5 +23,14 @@ namespace Recipe.Data.UnitOfWork
         public IIngredientRepository Ingredients { get; }
         public ICheckListRepository CheckLists { get; }
         public ICheckListItemRepository CheckListItems { get; }
+    }
+
+    public interface IUnitOfWork
+    {
+        IUserRepository Users { get; }
+        IRecipeRepository Recipes { get; }
+        IIngredientRepository Ingredients { get; }
+        ICheckListRepository CheckLists { get; }
+        ICheckListItemRepository CheckListItems { get; }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Recipe.Data.Entities
+﻿namespace Recipe.Data.Entities
 {
     public class User : Entity
     {

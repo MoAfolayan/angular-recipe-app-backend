@@ -1,5 +1,3 @@
-using System;
-
 namespace Recipe.Data.Entities
 {
     public class CheckListItem : Entity

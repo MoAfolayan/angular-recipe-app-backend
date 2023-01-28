@@ -1,10 +1,6 @@
-using System;
-using Recipe.Data.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Recipe.Logic.Services.Interfaces
+namespace Recipe.Logic.Services
 {
     public interface IService<TEntity>
     {
