@@ -2,6 +2,6 @@
 
 Back-end for Recipe App
 - Design
-  - .NET 6
+  - .NET 7
   - Dapper ORM
-  - SQL Server database
+  - SQL Server database running in docker container
