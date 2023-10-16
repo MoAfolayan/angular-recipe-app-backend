@@ -1,5 +1,8 @@
-﻿namespace Recipe.Data.Entities
+﻿using Dapper.Contrib.Extensions;
+
+namespace Recipe.Data.Entities
 {
+    [Table("User")]
     public class User : Entity
     {
         public string Auth0Id { get; set; }

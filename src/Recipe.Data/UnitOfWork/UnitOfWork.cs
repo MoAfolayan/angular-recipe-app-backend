@@ -7,23 +7,17 @@ namespace Recipe.Data.UnitOfWork
         public UnitOfWork(
             IUserRepository userRepository,
             IRecipeRepository recipeRepository,
-            IIngredientRepository ingredientRepository,
-            ICheckListRepository checkListRepository,
-            ICheckListItemRepository checkListItemRepository
+            IIngredientRepository ingredientRepository
         )
         {
             Users = userRepository;
             Recipes = recipeRepository;
             Ingredients = ingredientRepository;
-            CheckLists = checkListRepository;
-            CheckListItems = checkListItemRepository;
         }
 
         public IUserRepository Users { get; }
         public IRecipeRepository Recipes { get; }
         public IIngredientRepository Ingredients { get; }
-        public ICheckListRepository CheckLists { get; }
-        public ICheckListItemRepository CheckListItems { get; }
     }
 
     public interface IUnitOfWork
@@ -31,7 +25,5 @@ namespace Recipe.Data.UnitOfWork
         IUserRepository Users { get; }
         IRecipeRepository Recipes { get; }
         IIngredientRepository Ingredients { get; }
-        ICheckListRepository CheckLists { get; }
-        ICheckListItemRepository CheckListItems { get; }
     }
 }

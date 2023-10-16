@@ -53,16 +53,12 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IRecipeService, RecipeService>();
 builder.Services.AddTransient<IIngredientService, IngredientService>();
-builder.Services.AddTransient<ICheckListService, CheckListService>();
-builder.Services.AddTransient<ICheckListItemService, CheckListItemService>();
 
 // Repositories
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IRecipeRepository, RecipeRepository>();
 builder.Services.AddTransient<IIngredientRepository, IngredientRepository>();
-builder.Services.AddTransient<ICheckListRepository, CheckListRepository>();
-builder.Services.AddTransient<ICheckListItemRepository, CheckListItemRepository>();
 
 builder.Services.AddControllers();
 

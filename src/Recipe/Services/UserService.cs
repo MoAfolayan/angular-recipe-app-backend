@@ -22,27 +22,31 @@ namespace Recipe.Services
             return _unitOfWork.Users.GetUserByAuth0Id(auth0Id);
         }
 
-        public void Add(User user)
+        public void Add(IEnumerable<User> users)
         {
-            user.CreatedDate = DateTime.UtcNow;
-            user.IsActive = true;
-            _unitOfWork.Users.Insert(user);
+            foreach (var user in users)
+            {
+                user.CreatedDate = DateTime.UtcNow;
+                user.IsActive = true;
+            }
+
+            _unitOfWork.Users.Insert(users);
         }
 
-        public void Update(User user)
+        public void Update(IEnumerable<User> users)
         {
-            _unitOfWork.Users.Update(user);
+            _unitOfWork.Users.Update(users);
         }
 
-        public void Delete(User user)
+        public void Delete(IEnumerable<User> users)
         {
-            _unitOfWork.Users.Delete(user);
+            _unitOfWork.Users.Delete(users);
         }
 
-        public void DeleteMultiple(IEnumerable<User> users)
-        {
-            _unitOfWork.Users.DeleteMultiple(users);
-        }
+        // public void DeleteMultiple(IEnumerable<User> users)
+        // {
+        //     _unitOfWork.Users.Delete(users);
+        // }
     }
 
     public interface IUserService : IService<User>

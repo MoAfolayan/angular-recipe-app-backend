@@ -17,27 +17,31 @@ namespace Recipe.Services
             return _unitOfWork.Recipes.GetById(id);
         }
 
-        public void Add(Rec.Recipe recipe)
+        public void Add(IEnumerable<Rec.Recipe> recipes)
         {
-            recipe.CreatedDate = DateTime.UtcNow;
-            recipe.IsActive = true;
-            _unitOfWork.Recipes.Insert(recipe);
+            foreach (var recipe in recipes)
+            {
+                recipe.CreatedDate = DateTime.UtcNow;
+                recipe.IsActive = true;
+            }
+
+            _unitOfWork.Recipes.Insert(recipes);
         }
 
-        public void Update(Rec.Recipe recipe)
+        public void Update(IEnumerable<Rec.Recipe> recipes)
         {
-            _unitOfWork.Recipes.Update(recipe);
+            _unitOfWork.Recipes.Update(recipes);
         }
 
-        public void Delete(Rec.Recipe recipe)
+        public void Delete(IEnumerable<Rec.Recipe> recipes)
         {
-            _unitOfWork.Recipes.Delete(recipe);
+            _unitOfWork.Recipes.Delete(recipes);
         }
 
-        public void DeleteMultiple(IEnumerable<Rec.Recipe> recipes)
-        {
-            _unitOfWork.Recipes.DeleteMultiple(recipes);
-        }
+        // public void DeleteMultiple(IEnumerable<Rec.Recipe> recipes)
+        // {
+        //     _unitOfWork.Recipes.Delete(recipes);
+        // }
 
         public IEnumerable<Rec.Recipe> GetAllUserRecipesByUserId(int userId)
         {

@@ -45,7 +45,7 @@ namespace Recipe.API.Controllers
 
         [HttpPost]
         [Authorize(Policy = "create:users")]
-        public IActionResult Add([FromBody] User user)
+        public IActionResult Add([FromBody] IEnumerable<User> user)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace Recipe.API.Controllers
 
         [HttpPut]
         [Authorize(Policy = "update:users")]
-        public IActionResult Update([FromBody] User user)
+        public IActionResult Update([FromBody] IEnumerable<User> user)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace Recipe.API.Controllers
 
         [HttpDelete]
         [Authorize(Policy = "delete:users")]
-        public IActionResult Delete([FromBody] User user)
+        public IActionResult Delete([FromBody] IEnumerable<User> user)
         {
             try
             {

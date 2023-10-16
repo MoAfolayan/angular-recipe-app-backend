@@ -1,5 +1,8 @@
+using Dapper.Contrib.Extensions;
+
 namespace Recipe.Data.Entities
 {
+    [Table("Ingredient")]
     public class Ingredient : Entity
     {
         public string Name { get; set; }

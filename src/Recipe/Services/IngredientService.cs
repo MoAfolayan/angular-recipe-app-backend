@@ -17,27 +17,31 @@ namespace Recipe.Services
             return _unitOfWork.Ingredients.GetById(id);
         }
 
-        public void Add(Ingredient ingredient)
+        public void Add(IEnumerable<Ingredient> ingredients)
         {
-            ingredient.CreatedDate = DateTime.UtcNow;
-            ingredient.IsActive = true;
-            _unitOfWork.Ingredients.Insert(ingredient);
+            foreach (var ingredient in ingredients)
+            {
+                ingredient.CreatedDate = DateTime.UtcNow;
+                ingredient.IsActive = true;
+            }
+
+            _unitOfWork.Ingredients.Insert(ingredients);
         }
 
-        public void Update(Ingredient ingredient)
+        public void Update(IEnumerable<Ingredient> ingredients)
         {
-            _unitOfWork.Ingredients.Update(ingredient);
+            _unitOfWork.Ingredients.Update(ingredients);
         }
 
-        public void Delete(Ingredient ingredient)
+        public void Delete(IEnumerable<Ingredient> ingredients)
         {
-            _unitOfWork.Ingredients.Delete(ingredient);
+            _unitOfWork.Ingredients.Delete(ingredients);
         }
 
-        public void DeleteMultiple(IEnumerable<Ingredient> ingredients)
-        {
-            _unitOfWork.Ingredients.DeleteMultiple(ingredients);
-        }
+        // public void DeleteMultiple(IEnumerable<Ingredient> ingredients)
+        // {
+        //     _unitOfWork.Ingredients.Delete(ingredients);
+        // }
     }
 
     public interface IIngredientService : IService<Ingredient> { }

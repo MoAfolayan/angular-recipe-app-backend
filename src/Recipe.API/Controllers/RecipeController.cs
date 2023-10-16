@@ -7,12 +7,12 @@ namespace Recipe.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class RecipesController : ControllerBase
+    public class RecipeController : ControllerBase
     {
-        private readonly ILogger<RecipesController> _logger;
+        private readonly ILogger<RecipeController> _logger;
         private readonly IRecipeService _recipeService;
 
-        public RecipesController(ILogger<RecipesController> logger, IRecipeService recipeService)
+        public RecipeController(ILogger<RecipeController> logger, IRecipeService recipeService)
         {
             _logger = logger;
             _recipeService = recipeService;
@@ -36,11 +36,11 @@ namespace Recipe.API.Controllers
 
         [HttpPost]
         [Authorize(Policy = "create:non-user-entities")]
-        public IActionResult Add([FromBody] Rec.Recipe recipe)
+        public IActionResult Add([FromBody] IEnumerable<Rec.Recipe> recipes)
         {
             try
             {
-                _recipeService.Add(recipe);
+                _recipeService.Add(recipes);
                 return Ok();
             }
             catch (Exception ex)
@@ -52,11 +52,11 @@ namespace Recipe.API.Controllers
 
         [HttpPut]
         [Authorize(Policy = "update:non-user-entities")]
-        public IActionResult Update([FromBody] Rec.Recipe recipe)
+        public IActionResult Update([FromBody] IEnumerable<Rec.Recipe> recipes)
         {
             try
             {
-                _recipeService.Update(recipe);
+                _recipeService.Update(recipes);
                 return Ok();
             }
             catch (Exception ex)
@@ -66,29 +66,29 @@ namespace Recipe.API.Controllers
             }
         }
 
-        [HttpPost("delete-multiple")]
-        [Authorize(Policy = "delete:non-user-entities")]
-        public IActionResult DeleteMultiple([FromBody] IEnumerable<Rec.Recipe> recipes)
-        {
-            try
-            {
-                _recipeService.DeleteMultiple(recipes);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, ex.Message);
-                return StatusCode(500, ex.Message);
-            }
-        }
+        // [HttpPost("delete-multiple")]
+        // [Authorize(Policy = "delete:non-user-entities")]
+        // public IActionResult DeleteMultiple([FromBody] IEnumerable<Rec.Recipe> recipes)
+        // {
+        //     try
+        //     {
+        //         _recipeService.DeleteMultiple(recipes);
+        //         return Ok();
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         _logger.LogError(ex, ex.Message);
+        //         return StatusCode(500, ex.Message);
+        //     }
+        // }
 
         [HttpPost("delete")]
         [Authorize(Policy = "delete:non-user-entities")]
-        public IActionResult Delete([FromBody] Rec.Recipe recipe)
+        public IActionResult Delete([FromBody] IEnumerable<Rec.Recipe> recipes)
         {
             try
             {
-                _recipeService.Delete(recipe);
+                _recipeService.Delete(recipes);
                 return Ok();
             }
             catch (Exception ex)
