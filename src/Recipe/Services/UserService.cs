@@ -42,11 +42,6 @@ namespace Recipe.Services
         {
             _unitOfWork.Users.Delete(users);
         }
-
-        // public void DeleteMultiple(IEnumerable<User> users)
-        // {
-        //     _unitOfWork.Users.Delete(users);
-        // }
     }
 
     public interface IUserService : IService<User>

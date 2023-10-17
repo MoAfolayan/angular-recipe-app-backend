@@ -32,18 +32,6 @@ namespace Recipe.Data.Repositories
             return result;
         }
 
-        // public void Insert(TEntity entity)
-        // {
-        //     using (
-        //         var connection = new SqlConnection(
-        //             _configuration.GetConnectionString("DefaultConnection")
-        //         )
-        //     )
-        //     {
-        //         connection.Insert(entity);
-        //     }
-        // }
-
         public void Insert(IEnumerable<TEntity> entities)
         {
             using (
@@ -56,18 +44,6 @@ namespace Recipe.Data.Repositories
             }
         }
 
-        // public void Update(TEntity entity)
-        // {
-        //     using (
-        //         var connection = new SqlConnection(
-        //             _configuration.GetConnectionString("DefaultConnection")
-        //         )
-        //     )
-        //     {
-        //         connection.Update(entity);
-        //     }
-        // }
-
         public void Update(IEnumerable<TEntity> entities)
         {
             using (
@@ -79,23 +55,6 @@ namespace Recipe.Data.Repositories
                 connection.Update(entities);
             }
         }
-
-        // public void Delete(TEntity entity)
-        // {
-        //     var sql =
-        //         $@"UPDATE {_tableName}
-        //                 SET IsActive = 0
-        //                 WHERE Id = @id";
-
-        //     using (
-        //         var connection = new SqlConnection(
-        //             _configuration.GetConnectionString("DefaultConnection")
-        //         )
-        //     )
-        //     {
-        //         connection.Execute(sql, entity);
-        //     }
-        // }
 
         public void Delete(IEnumerable<TEntity> entities)
         {
@@ -110,7 +69,7 @@ namespace Recipe.Data.Repositories
                 )
             )
             {
-                connection.Execute(sql, entities.Select(e => e.Id).ToList());
+                connection.Execute(sql, new { idList = entities.Select(e => e.Id).ToList() });
             }
         }
     }
@@ -121,11 +80,8 @@ namespace Recipe.Data.Repositories
         TEntity GetById(int id);
         void Insert(IEnumerable<TEntity> entities);
 
-        // void InsertMultiple(IEnumerable<TEntity> entities);
         void Update(IEnumerable<TEntity> entities);
 
-        // void UpdateMultiple(IEnumerable<TEntity> entities);
-        // void Delete(TEntity entity);
         void Delete(IEnumerable<TEntity> entities);
     }
 }

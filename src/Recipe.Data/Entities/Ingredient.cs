@@ -8,7 +8,7 @@ namespace Recipe.Data.Entities
         public string Name { get; set; }
         public int RecipeId { get; set; }
 
-        //not in database
+        [Write(false)]
         public Recipe Recipe { get; set; }
     }
 }

@@ -6,6 +6,5 @@ namespace Recipe.Services
         void Add(IEnumerable<TEntity> entity);
         void Update(IEnumerable<TEntity> entity);
         void Delete(IEnumerable<TEntity> entity);
-        // void DeleteMultiple(IEnumerable<TEntity> entities);
     }
 }

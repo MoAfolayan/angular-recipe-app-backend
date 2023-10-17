@@ -30,6 +30,12 @@ namespace Recipe.Services
 
         public void Update(IEnumerable<Ingredient> ingredients)
         {
+            foreach (var ingredient in ingredients)
+            {
+                ingredient.IsActive = true;
+                ingredient.CreatedDate = DateTime.UtcNow;
+            }
+
             _unitOfWork.Ingredients.Update(ingredients);
         }
 
@@ -37,11 +43,6 @@ namespace Recipe.Services
         {
             _unitOfWork.Ingredients.Delete(ingredients);
         }
-
-        // public void DeleteMultiple(IEnumerable<Ingredient> ingredients)
-        // {
-        //     _unitOfWork.Ingredients.Delete(ingredients);
-        // }
     }
 
     public interface IIngredientService : IService<Ingredient> { }

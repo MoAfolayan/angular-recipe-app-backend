@@ -30,6 +30,11 @@ namespace Recipe.Services
 
         public void Update(IEnumerable<Rec.Recipe> recipes)
         {
+            foreach (var recipe in recipes)
+            {
+                recipe.IsActive = true;
+                recipe.CreatedDate = DateTime.UtcNow;
+            }
             _unitOfWork.Recipes.Update(recipes);
         }
 
@@ -37,11 +42,6 @@ namespace Recipe.Services
         {
             _unitOfWork.Recipes.Delete(recipes);
         }
-
-        // public void DeleteMultiple(IEnumerable<Rec.Recipe> recipes)
-        // {
-        //     _unitOfWork.Recipes.Delete(recipes);
-        // }
 
         public IEnumerable<Rec.Recipe> GetAllUserRecipesByUserId(int userId)
         {

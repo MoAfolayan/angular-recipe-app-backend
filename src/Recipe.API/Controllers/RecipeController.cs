@@ -66,22 +66,6 @@ namespace Recipe.API.Controllers
             }
         }
 
-        // [HttpPost("delete-multiple")]
-        // [Authorize(Policy = "delete:non-user-entities")]
-        // public IActionResult DeleteMultiple([FromBody] IEnumerable<Rec.Recipe> recipes)
-        // {
-        //     try
-        //     {
-        //         _recipeService.DeleteMultiple(recipes);
-        //         return Ok();
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         _logger.LogError(ex, ex.Message);
-        //         return StatusCode(500, ex.Message);
-        //     }
-        // }
-
         [HttpPost("delete")]
         [Authorize(Policy = "delete:non-user-entities")]
         public IActionResult Delete([FromBody] IEnumerable<Rec.Recipe> recipes)
