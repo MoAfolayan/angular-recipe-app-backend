@@ -39,7 +39,7 @@ namespace Recipe.API.Controllers
 
         [HttpPost]
         [Authorize(Policy = "create:non-user-entities")]
-        public IActionResult Add([FromBody] Ingredient ingredient)
+        public IActionResult Add([FromBody] IEnumerable<Ingredient> ingredient)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace Recipe.API.Controllers
 
         [HttpPut]
         [Authorize(Policy = "update:non-user-entities")]
-        public IActionResult Update([FromBody] Ingredient ingredient)
+        public IActionResult Update([FromBody] IEnumerable<Ingredient> ingredient)
         {
             try
             {
@@ -71,11 +71,11 @@ namespace Recipe.API.Controllers
 
         [HttpDelete]
         [Authorize(Policy = "delete:non-user-entities")]
-        public IActionResult Delete([FromBody] Ingredient ingredient)
+        public IActionResult Delete([FromBody] IEnumerable<Ingredient> ingredients)
         {
             try
             {
-                _ingredientService.Delete(ingredient);
+                _ingredientService.Delete(ingredients);
                 return Ok();
             }
             catch (Exception ex)
