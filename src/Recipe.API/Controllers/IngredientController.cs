@@ -69,7 +69,7 @@ namespace Recipe.API.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpPost("delete")]
         [Authorize(Policy = "delete:non-user-entities")]
         public IActionResult Delete([FromBody] IEnumerable<Ingredient> ingredients)
         {
